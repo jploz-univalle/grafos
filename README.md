@@ -20,12 +20,11 @@ Este proyecto esta diseñado para virtualizar informacion de un grafo dada en un
 grafos/
 │
 ├── main.py
-├── grafo.py
-├── visualizador.py
-├── lector.py
+├── graph.py
+├── adjacencyList.py
+├── node.py
 ├── data/
 │   └── grafo.txt
-├── requirements.txt
 └── README.md
 ```
 
