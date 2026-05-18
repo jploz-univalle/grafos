@@ -30,13 +30,16 @@ class Graph:
                 target:tuple
                 print(f"Source: {node.source}\tTarget:{target[0]}\tWeight:{target[1]}")
 
+    def getNodesStr(self) ->str:
+        return " ".join([node.source for node in self.nodes_list])
+
     # Cuenta el grado de salida de un nodo
     def degreeOut(self, node_name: str) -> None:
-        print("El grado de salida del nodo: "+node_name+"es :" + len(self.findNodeByName(node_name).targets))
+        print("El grado de salida del nodo: "+node_name+" es: " + str(len(self.findNodeByName(node_name).targets)))
 
     # Cuenta el grado de entrada de un nodo
     def degreeIn(self, node_name: str) -> None:
-        print("El grado de entrada del nodo: "+node_name+"es :" + len(self.findNodeByName(node_name).targeted))
+        print("El grado de entrada del nodo: "+node_name+" es: " + str(len(self.findNodeByName(node_name).targeted)))
         
     # Encontrar un Nodo por su nombre 
     def findNodeByName(self, node_name): 
@@ -63,10 +66,10 @@ class Graph:
         listOfNodes = set(self.adjacency_list.nodesList)
 
         for node_name in listOfNodes: 
-            actual = listOfNodes - set(node_name)
+            actually = listOfNodes - set(node_name)
             node = self.findNodeByName(node_name)
 
-            if set(node.targeted) != actual:
+            if set(node.targeted) != actually:
                 print("No es un grafo completo")
                 return
         
