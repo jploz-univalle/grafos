@@ -51,6 +51,12 @@ Linux/Mac:
 source venv/bin/activate
 ```
 
+### Como ejecutar el programa
+Para evitar errores se debe situar desde la carpeta raiz y ejecutar
+```bash
+python -m src.main
+```
+
 ## Autor
 Juan Pablo Lozano
 
