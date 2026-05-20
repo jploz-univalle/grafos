@@ -1,7 +1,7 @@
 import tkinter as tk
-from graph import Graph
+from graphs_1.graph import Graph
 import math
-from graphicNode import GraphicNode
+from graphs_1.graphicNode import GraphicNode
 
 class Graphic: 
     def __init__(self, grafo: Graph):

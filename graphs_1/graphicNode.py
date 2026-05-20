@@ -1,4 +1,4 @@
-from node import Node
+from graphs_1.node import Node
 
 class GraphicNode(Node):
     def __init__(self,source, targets, targeted, coox, cooy):

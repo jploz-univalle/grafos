@@ -1,6 +1,7 @@
-from  graph import Graph
-from adjacencyList import AdjacencyList
-from GUI import Graphic as Window
+from  graphs_1.graph import Graph
+from graphs_1.adjacencyList import AdjacencyList
+from graphs_1.GUI import Graphic as Window
+
 
 def main():
     #Inicializar la lista de adyacencia con lectura de un archivo txt
@@ -14,7 +15,7 @@ def main():
     # grafo.degreeIn("A")
     # grafo.IsAMultigraph()
     # grafo.IsACompleteGraph()
-    #Window(grafo)
+    # Window(grafo)
 
     while True: 
         print("\t\tPrograma piloto de grafos")

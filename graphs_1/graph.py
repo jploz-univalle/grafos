@@ -1,5 +1,5 @@
-from adjacencyList import AdjacencyList
-from node import Node
+from graphs_1.adjacencyList import AdjacencyList
+from graphs_1.node import Node
 
 class Graph:
     def __init__(self, adjacencyList: AdjacencyList):
