@@ -58,7 +58,18 @@ python -m src.main
 ```
 
 ## Autor
-Juan Pablo Lozano
+Juan Pablo Lozano 2521505
 
 Universidad del Valle
 Matematicas Discretas II 
+
+## Historial
+
+25/05/2026
+
+- Sistema adaptado para abrir archivo especificado por el usuario (csv o txt)
+- Sistema de dibujado de aristas modificado para visualización adecuada
+- Reestructuración de GUI.py
+- Nuevo archivo execute.py encargado de la ejecución del programa, por entrega
+- Nueva clase Edge que representa las aristas
+- Reestructuración de clases y documentación
