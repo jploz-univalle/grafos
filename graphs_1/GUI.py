@@ -15,9 +15,12 @@ class Graphic:
         self.window_loader()
 
         # Variables de operacion para logica de calculo de posiciones
-        self.surrounding = 360/len(grafo.adjacency_list.nodesList)
-        self.centerDistance = 180
-        self.ovalSize=40
+        self.numberOfNodes = len(grafo.adjacency_list.nodesList)
+        self.surrounding = 360/self.numberOfNodes
+        self.increment_center_distance_coeficient = self.numberOfNodes//32
+        self.centerDistance = 200*self.increment_center_distance_coeficient
+            
+        self.ovalSize=20
         self.radius=self.ovalSize/2
         self.graphic_nodes_list = list()
         
@@ -94,15 +97,35 @@ class Graphic:
         """        
         self.ventana = tk.Tk()
         self.ventana.title("Visualizador de Grafo")
+        self.ventana.geometry(f"{self.ventana.winfo_screenwidth()}x{self.ventana.winfo_screenheight()}")
 
-        self.canvas = tk.Canvas(self.ventana, width=800, height=600, bg="white")
-        self.CENTER_WIDTH = 400
-        self.CENTER_HEIGHT = 300
-        self.canvas.pack()
+        def zoom(event):
+            factor = 1.1 if event.delta > 0 else 0.9
 
-        # Centro simulado de referencia
-        self.canvas.create_oval(self.CENTER_WIDTH-10, self.CENTER_HEIGHT-10, self.CENTER_WIDTH+10, self.CENTER_HEIGHT+10, fill="lightblue")
-        self.canvas.create_text(self.CENTER_WIDTH, self.CENTER_HEIGHT, text="O")
+            self.canvas.scale(
+                "all",
+                event.x,
+                event.y,
+                factor,
+                factor
+            )
+        
+        def start_pan(event):
+            self.canvas.scan_mark(event.x, event.y)
+
+        def pan(event):
+            self.canvas.scan_dragto(event.x, event.y, gain=1)
+
+        self.canvas = tk.Canvas(self.ventana, width=self.ventana.winfo_screenwidth(), height=self.ventana.winfo_screenheight(), bg="white")
+        self.CENTER_WIDTH = self.ventana.winfo_screenwidth()/2
+        self.CENTER_HEIGHT = self.ventana.winfo_screenheight()/2
+        self.canvas.pack(fill="both", expand=True)
+        self.canvas.bind("<MouseWheel>", zoom)
+        self.canvas.bind("<ButtonPress-1>", start_pan) # Escaneo
+        self.canvas.bind("<B1-Motion>", pan) # Movimiento
+
+
+    
 
     # Metodo para crear ovalos(Nodos) rapidamente
     def create_oval(self, size: int, x:int, y:int) -> int:

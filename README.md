@@ -73,3 +73,5 @@ Matematicas Discretas II
 - Nuevo archivo execute.py encargado de la ejecución del programa, por entrega
 - Nueva clase Edge que representa las aristas
 - Reestructuración de clases y documentación
+- Movimiento y zoom en la representacion visual
+- Coeficiente dinamico agregado para datos muy grandes
