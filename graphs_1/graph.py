@@ -2,6 +2,9 @@ from graphs_1.adjacencyList import AdjacencyList
 from graphs_1.node import Node
 
 class Graph:
+    """Esta clase representa un grafo
+    """    
+
     def __init__(self, adjacencyList: AdjacencyList):
         self.nodes_list = []
         self.adjacency_list = adjacencyList
@@ -9,16 +12,22 @@ class Graph:
 
     # Carga la lista de adyacencia a la entidad grafo
     def constructByAdjacencyList (self) -> None:
+        """Permite incializar una lista de objetos node: list[Node]
+        """        
         for node_name in self.adjacency_list.nodesList:
-            self.nodes_list.append(Node(source=node_name,
-                                   targets=self.adjacency_list.nodesExit.get(node_name, list()),
-                                   targeted=self.adjacency_list.nodesEntry.get(node_name, list())
-                                   )
-                                )
+            self.nodes_list.append(
+                Node(
+                    source=node_name,
+                    targets=self.adjacency_list.nodesExit.get(node_name, list()),
+                    targeted=self.adjacency_list.nodesEntry.get(node_name, list())
+                    )
+                )
 
 
     # Muestra informacion acerca de los nodos
     def show_nodes(self) -> None:
+        """Muestra informacion sobre los nodos
+        """        
         print("\tShow all")
         for node in self.nodes_list:
             node:Node
@@ -31,26 +40,54 @@ class Graph:
                 print(f"Source: {node.source}\tTarget:{target[0]}\tWeight:{target[1]}")
 
     def getNodesStr(self) ->str:
+        """Retorna los nodos existentes
+
+        Returns:
+            str: Nombres de nodos separados por espacios
+        """        
         return " ".join([node.source for node in self.nodes_list])
 
     # Cuenta el grado de salida de un nodo
     def degreeOut(self, node_name: str) -> None:
+        """Muestra el grado de salida de un nodo en especifico
+
+        Args:
+            node_name (str): Nombre del nodo a mostrar el grado de salida
+        """        
         print("El grado de salida del nodo: "+node_name+" es: " + str(len(self.findNodeByName(node_name).targets)))
 
     # Cuenta el grado de entrada de un nodo
     def degreeIn(self, node_name: str) -> None:
+        """Muestra el grado de entrada de un nodo en especifico
+
+        Args:
+            node_name (str): Nombre del nodo a mostrar el grado de entrada
+        """        
         print("El grado de entrada del nodo: "+node_name+" es: " + str(len(self.findNodeByName(node_name).targeted)))
         
     # Encontrar un Nodo por su nombre 
-    def findNodeByName(self, node_name): 
+    def findNodeByName(self, node_name: str) -> None | Node:
+        """Retorna un objeto Node buscando por su nombre (Node.source)
+
+        Args:
+            node_name (str): Nombre del nodo a buscar
+
+        Returns:
+            Node: Objeto Node buscado.
+        """        
         for node in self.nodes_list:
             if node.source == node_name:
                 node:Node
                 return node
+            
+        print("El nodo buscado no existe.")
+        return None
 
     
     # Definir si es un grafo simple o multigrafo
     def IsAMultigraph(self) -> None:
+        """Dice si es un multigrafo o un grafo simple
+        """        
         relations = []
         for node in self.nodes_list:
             for target in node.targets:
@@ -63,6 +100,8 @@ class Graph:
         print("Es un grafo simple.")
 
     def IsACompleteGraph(self) -> None:
+        """Dice si es un grafo completo o no
+        """        
         listOfNodes = set(self.adjacency_list.nodesList)
 
         for node_name in listOfNodes: 
