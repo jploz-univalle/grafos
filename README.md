@@ -67,11 +67,12 @@ Matematicas Discretas II
 
 25/05/2026
 
-- Sistema adaptado para abrir archivo especificado por el usuario (csv o txt)
-- Sistema de dibujado de aristas modificado para visualización adecuada
-- Reestructuración de GUI.py
-- Nuevo archivo execute.py encargado de la ejecución del programa, por entrega
-- Nueva clase Edge que representa las aristas
-- Reestructuración de clases y documentación
-- Movimiento y zoom en la representacion visual
-- Coeficiente dinamico agregado para datos muy grandes
+- **Sistema adaptado para abrir archivo especificado por el usuario (csv o txt):** Se modificó el lector para procesar de forma transparente ambos formatos eliminando espacios residuales.
+- **Sistema de dibujado de aristas modificado para visualización adecuada:** Optimización matemática en el renderizado de las flechas y las conexiones dirigidas.
+- **Corrección Geométrica en GUI:** Ajuste dinámico de las coordenadas base para evitar el colapso de los nodos en el centro de la pantalla.
+- **Nuevo archivo execute.py encargado de la ejecución del programa, por entrega:** Creación del punto de entrada limpio e independiente que unifica el sistema.
+- **Nueva clase Edge que representa las aristas:** Separación de responsabilidades mediante un modelo de datos propio para los arcos ponderados.
+- **Reestructuración de clases y documentación:** Refactorización general de variables y funciones al inglés bajo estándares de la industria.
+- **Movimiento y zoom en la representación visual:** Integración de bindings en el lienzo para navegación fluida mediante arrastre y rueda del ratón.
+- **Coeficiente dinámico agregado para datos muy grandes:** Ajuste de escala automático que previene el amontonamiento visual cuando el grafo escala en densidad.
+- **Soporte Completo para Lazos Propios:** Resolución de excepciones matemáticas (división por cero) al renderizar aristas que conectan un nodo consigo mismo.
