@@ -18,13 +18,13 @@ class Graphic:
         self.numberOfNodes = len(grafo.adjacency_list.nodesList)
         self.surrounding = 360/self.numberOfNodes
         self.increment_center_distance_coeficient = self.numberOfNodes//32
-        self.centerDistance = 200*self.increment_center_distance_coeficient
+        self.centerDistance = 200 * max(1, self.numberOfNodes / 32)
             
         self.ovalSize=20
         self.radius=self.ovalSize/2
         self.graphic_nodes_list = list()
         
-        # Cargare elementos visuales
+        # Cargar elementos visuales
         self.load_nodes(grafo)
         self.load_arrows()
 
@@ -76,7 +76,6 @@ class Graphic:
                 if graphicNode.source == target[0]:
                     self.canvas: tk.Canvas
                     self.canvas.itemconfig(graphicNode.ID, fill="red")
-                    continue
                 
                 edge = GraphicEdge(
                         graphicNode,
@@ -84,13 +83,9 @@ class Graphic:
                         weight=target[1]
                     )
 
-                graphicNode.edges_list.append(
-                    edge
-                )
+                graphicNode.edges_list.append(edge)
 
-                edge.create_arrow(
-                    self.canvas
-                )
+                edge.create_arrow(self.canvas)
 
     def window_loader(self) -> None:
         """Carga la configuracion inicial de la GUI

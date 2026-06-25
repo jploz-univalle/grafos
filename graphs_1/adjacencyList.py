@@ -6,7 +6,6 @@ class AdjacencyList:
     """Esta clase representa una lista de adjacencia de grafos
     """    
     def __init__(self, file_name="") -> None:
-
         BASE_DIR = Path(__file__).resolve().parent
 
 
@@ -51,15 +50,12 @@ class AdjacencyList:
             #print(source, weight, target, sep="\t")
 
             self.nodesExit[source] = self.nodesExit.get(source, []) + [tuple([target, weight])]
-            
-
             self.nodesList.add(source)
             self.nodesList.add(target)
 
         # Crear la estructura de datos que permite identificar que nodos son apuntados por otros nodos
         for source, targets in self.nodesExit.items():
             for target in targets:
-                target: tuple
                 self.nodesEntry[target[0]] = self.nodesEntry.get(target[0], []) + [(source)]
 
         
@@ -84,7 +80,6 @@ class AdjacencyList:
         # Crear la estructura de datos que permite identificar que nodos son apuntados por otros nodos
         for source, targets in self.nodesExit.items():
             for target in targets:
-                target: tuple
                 self.nodesEntry[target[0]] = self.nodesEntry.get(target[0], []) + [(source)]
 
 

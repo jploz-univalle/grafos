@@ -5,7 +5,7 @@ from graphs_1.graphicNode import GraphicNode
 class GraphicEdge:
     """Clase que representa una arista con direccion
     """    
-    def __init__(self, node1, node2, weight=1) -> None:
+    def __init__(self, node1: GraphicNode, node2: GraphicNode, weight=1) -> None:
         self.node1 = node1
         self.node2 = node2
         self.weight = weight
@@ -17,10 +17,7 @@ class GraphicEdge:
 
         Args:
             canvas (Canvas): Objeto Canvas donde se dibujan los objetos
-        """        
-            
-        self.node1:GraphicNode
-        self.node2:GraphicNode
+        """
 
         x1, y1 = self.node1.getCoo()
         r1 = self.node1.radius
@@ -33,6 +30,9 @@ class GraphicEdge:
         dify = y2 - y1
 
         d = hypot(difx, dify)
+
+        if d == 0:
+            return
 
         ux = difx / d
         uy = dify / d

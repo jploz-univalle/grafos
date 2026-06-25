@@ -8,10 +8,10 @@ class Graph:
     def __init__(self, adjacencyList: AdjacencyList):
         self.nodes_list = []
         self.adjacency_list = adjacencyList
-        self.constructByAdjacencyList()
+        self.construct_by_adjancency_list()
 
     # Carga la lista de adyacencia a la entidad grafo
-    def constructByAdjacencyList (self) -> None:
+    def construct_by_adjancency_list (self) -> None:
         """Permite incializar una lista de objetos node: list[Node]
         """        
         for node_name in self.adjacency_list.nodesList:
@@ -30,13 +30,11 @@ class Graph:
         """        
         print("\tShow all")
         for node in self.nodes_list:
-            node:Node
             print(f"{node.targeted} => {node.source} => {node.targets}")
 
         print("\n\tDetails")
         for node in self.nodes_list: 
             for target in node.targets:
-                target:tuple
                 print(f"Source: {node.source}\tTarget:{target[0]}\tWeight:{target[1]}")
 
     def getNodesStr(self) ->str:
@@ -53,8 +51,10 @@ class Graph:
 
         Args:
             node_name (str): Nombre del nodo a mostrar el grado de salida
-        """        
-        print("El grado de salida del nodo: "+node_name+" es: " + str(len(self.findNodeByName(node_name).targets)))
+        """
+        node = self.findNodeByName(node_name)
+        if node is not None:
+            print(f"El grado de salida del nodo: {node_name} es: {len(node.targeted)}")
 
     # Cuenta el grado de entrada de un nodo
     def degreeIn(self, node_name: str) -> None:
@@ -62,8 +62,10 @@ class Graph:
 
         Args:
             node_name (str): Nombre del nodo a mostrar el grado de entrada
-        """        
-        print("El grado de entrada del nodo: "+node_name+" es: " + str(len(self.findNodeByName(node_name).targeted)))
+        """
+        node = self.findNodeByName(node_name)
+        if node is not None:
+            print(f"El grado de entrada del nodo: {node_name} es: {len(node.targeted)}")
         
     # Encontrar un Nodo por su nombre 
     def findNodeByName(self, node_name: str) -> None | Node:
@@ -77,7 +79,6 @@ class Graph:
         """        
         for node in self.nodes_list:
             if node.source == node_name:
-                node:Node
                 return node
             
         print("El nodo buscado no existe.")
@@ -95,8 +96,7 @@ class Graph:
                 if edge in relations:
                     print("Es un multigrafo.")
                     return
-                
-                relations.append(tuple([node.source, target[0]]))
+                relations.append(edge)
         print("Es un grafo simple.")
 
     def IsACompleteGraph(self) -> None:
@@ -105,10 +105,10 @@ class Graph:
         listOfNodes = set(self.adjacency_list.nodesList)
 
         for node_name in listOfNodes: 
-            actually = listOfNodes - set(node_name)
+            remaining_nodes = listOfNodes - set([node_name])
             node = self.findNodeByName(node_name)
 
-            if set(node.targeted) != actually:
+            if node is dict or set(node.targeted) != remaining_nodes:
                 print("No es un grafo completo")
                 return
         

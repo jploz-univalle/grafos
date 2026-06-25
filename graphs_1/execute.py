@@ -33,11 +33,11 @@ def main() -> None:
                 grafo.show_nodes()
             case 2:
                 print("Nodos disponibles: " + grafo.getNodesStr())
-                op = input("> ")
+                op = input(">")
                 grafo.degreeOut(op)
             case 3:
                 print("Nodos disponibles: " + grafo.getNodesStr())
-                op = input("> ")
+                op = input(">")
                 grafo.degreeIn(op)
             case 4:
                 grafo.IsAMultigraph()
