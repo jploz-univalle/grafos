@@ -19,17 +19,26 @@ prefiero usar Python por su versatilidad.
 ## Estructura del Proyecto
 
 ```text
-grafos/
+GRAFOS/ (raíz del proyecto)
 │
-├── main.py
-├── graph.py
-├── adjacencyList.py
-├── node.py
-├── graphicNode.py
-├── GUI.py
-├── data/
-│   └── grafoData.txt
-└── README.md
+├── README.md
+├── requeriments.txt
+├── install_deps.bat
+├── src/
+│   ├── __init__.py
+│   └── main.py
+└── graphs_1/
+    ├── __init__.py
+    ├── execute.py
+    ├── adjacencyList.py
+    ├── graph.py
+    ├── node.py
+    ├── graphicNode.py
+    ├── graphicEdge.py
+    ├── GUI.py
+    └── data/
+        ├── grafo*.csv
+        └── int.txt
 ```
 
 ## Ejecucion del archivo python
@@ -42,10 +51,18 @@ python -m venv venv
 Windows:
 
 ```bash
+install_deps.bat
+```
+
+```bash
 venv\Scripts\activate
 ```
 
 Linux/Mac:
+
+```bash
+bash install_deps_linux.sh
+```
 
 ```bash
 source venv/bin/activate
@@ -57,13 +74,18 @@ Para evitar errores se debe situar desde la carpeta raiz y ejecutar
 python -m src.main
 ```
 
-## Autor
+## Autores
 Juan Pablo Lozano 2521505
+Jhonny Alexander Moreno Florez 2522112
 
 Universidad del Valle
 Matematicas Discretas II 
 
 ## Historial
+13/07/2026
+- **Sistema puede verificar si el grafo es un arbol:** Se modifico la clase graph con un metodo que permite corroborar si el grafo de entrada es un arbol.
+- **Sistema de instalacion de dependencias:** Se implemento un sistema de instalacion de dependencias autonomo.
+- **Se incluye archivo de configuracion para visual studio:** De forma opcional se incluye una configuracion de depuracion para Visual Studio Code.
 
 25/05/2026
 
