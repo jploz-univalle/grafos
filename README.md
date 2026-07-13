@@ -13,6 +13,8 @@ prefiero usar Python por su versatilidad.
 - Calcular grado de entrada y salida
 - Detectar multigrafos
 - Verificar si un grafo es completo
+- Comprobar si el grafo es un arbol
+- Usar el algoritmo de dijkstra
 - Leer grafos desde archivos .txt
 - Uso de GUI
 
@@ -86,6 +88,8 @@ Matematicas Discretas II
 - **Sistema puede verificar si el grafo es un arbol:** Se modifico la clase graph con un metodo que permite corroborar si el grafo de entrada es un arbol.
 - **Sistema de instalacion de dependencias:** Se implemento un sistema de instalacion de dependencias autonomo.
 - **Se incluye archivo de configuracion para visual studio:** De forma opcional se incluye una configuracion de depuracion para Visual Studio Code.
+- **Sistema puede usar el algoritmo de dijkstra:** El sistema puede buscar entre dos nodos especificados usando el algoritmo de dijkstra.
+- **Sistema usa hilos para ejecutar la GUI al mismo tiempo que la consola:** El sistema usa la bibliote threading para usar hilos y ejecutar de forma paralela la consola y la interfaz grafica. 
 
 25/05/2026
 
