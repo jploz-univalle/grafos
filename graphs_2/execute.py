@@ -1,6 +1,6 @@
-from  graphs_1.graph import Graph
-from graphs_1.adjacencyList import AdjacencyList
-from graphs_1.GUI import Graphic as Window
+from  graphs_2.graph import Graph
+from graphs_2.adjacencyList import AdjacencyList
+from graphs_2.GUI import Graphic as Window
 import threading
 
 def main() -> None:
@@ -15,6 +15,68 @@ def main() -> None:
 
     #Inicializar el grafo con la lista de adyacencia cargada
     grafo = Graph(adjacency_list)
+
+    def show_node_info():
+        grafo.show_nodes()
+        waitConfirm()
+    
+    def show_entry_degree():
+        print("Nodos disponibles: " + grafo.getNodesStr())
+        op = input(">")
+        grafo.degreeOut(op)
+        waitConfirm()
+    
+    def show_exit_degree():
+        print("Nodos disponibles: " + grafo.getNodesStr())
+        op = input(">")
+        grafo.degreeIn(op)
+        waitConfirm()
+
+    def isMultigraphOrSimplegraph(): 
+        grafo.IsAMultigraph()
+        waitConfirm()
+
+    def isFullGraph():
+        grafo.IsACompleteGraph()
+        waitConfirm()
+    
+    def visualizeGraph():
+        def load_window():
+            Window(grafo=grafo)
+        
+        t = threading.Thread(target=load_window, daemon=True)
+        t.start()
+    
+    def isGraphTree():
+        if grafo.isTree():
+            print("Si, el grafo es un arbol porque es conexo y m = n - 1.")
+        else:
+            print("No es un arbol.")
+        waitConfirm()
+
+    def dijkstraAlgorithm():
+        startNode = input("Ingrese el nodo de inicio: ")
+        endNode = input("Ingrese el nodo final: ")
+        weigth, route = grafo.dijkstra(startNode, endNode)
+        if weigth != "inf":
+            print(f"La ruta entre {startNode} y {endNode} tiene el peso: {weigth} y la ruta: {route}")
+        else:
+            print("Los nodos seleccionados no son validos para el algoritmo dijkstra")
+        waitConfirm()
+
+    def hasEulerPath():
+        if grafo.has_eulerian_path():
+            print("Sí, el grafo tiene al menos un camino de Euler.")
+        else:
+            print("No, el grafo no contiene ningún camino de Euler.")
+        waitConfirm()
+    
+    def hasEulerCircuit():
+        if grafo.has_eulerian_circuit():
+            print("Sí, el grafo tiene un circuito de Euler.")
+        else:
+            print("No, el grafo no contiene ningún circuito de Euler.")
+        waitConfirm()
 
     while True: 
         print("\t\tPrograma piloto de grafos")
@@ -35,58 +97,25 @@ def main() -> None:
 
         match option:
             case 1:
-                grafo.show_nodes()
-                waitConfirm()
+                show_node_info()
             case 2:
-                print("Nodos disponibles: " + grafo.getNodesStr())
-                op = input(">")
-                grafo.degreeOut(op)
-                waitConfirm()
+                show_entry_degree()
             case 3:
-                print("Nodos disponibles: " + grafo.getNodesStr())
-                op = input(">")
-                grafo.degreeIn(op)
-                waitConfirm()
+                show_exit_degree()
             case 4:
-                grafo.IsAMultigraph()
-                waitConfirm()
+                isMultigraphOrSimplegraph()
             case 5:
-                grafo.IsACompleteGraph()
-                waitConfirm()
+                isFullGraph()
             case 6:
-                def load_window():
-                    Window(grafo=grafo)
-                
-                t = threading.Thread(target=load_window, daemon=True)
-                t.start()
-
+                visualizeGraph()
             case 7:
-                if grafo.isTree():
-                    print("Si, el grafo es un arbol porque es conexo y m = n - 1.")
-                else:
-                    print("No es un arbol.")
-                waitConfirm()
+                isGraphTree()
             case 8:
-                startNode = input("Ingrese el nodo de inicio: ")
-                endNode = input("Ingrese el nodo final: ")
-                weigth, route = grafo.dijkstra(startNode, endNode)
-                if weigth != "inf":
-                    print(f"La ruta entre {startNode} y {endNode} tiene el peso: {weigth} y la ruta: {route}")
-                else:
-                    print("Los nodos seleccionados no son validos para el algoritmo dijkstra")
-                waitConfirm()
+                dijkstraAlgorithm()
             case 9:
-                if grafo.has_eulerian_path():
-                    print("Sí, el grafo tiene al menos un camino de Euler.")
-                else:
-                    print("No, el grafo no contiene ningún camino de Euler.")
-                waitConfirm()
+                hasEulerPath()
             case 10:
-                if grafo.has_eulerian_circuit():
-                    print("Sí, el grafo tiene un circuito de Euler.")
-                else:
-                    print("No, el grafo no contiene ningún circuito de Euler.")
-                waitConfirm()
+                hasEulerCircuit()
             case 11:
                 print("Saliendo...")
                 break

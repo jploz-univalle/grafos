@@ -1,10 +1,10 @@
 import tkinter as tk
 import math
 
-from graphs_1.graph import Graph
-from graphs_1.graphicNode import GraphicNode
-from graphs_1.node import Node
-from graphs_1.graphicEdge import GraphicEdge
+from graphs_2.graph import Graph
+from graphs_2.graphicNode import GraphicNode
+from graphs_2.node import Node
+from graphs_2.graphicEdge import GraphicEdge
 
 
 class Graphic:
