@@ -15,6 +15,7 @@ prefiero usar Python por su versatilidad.
 - Verificar si un grafo es completo
 - Comprobar si el grafo es un arbol
 - Usar el algoritmo de dijkstra
+- circuito y camino de euler
 - Leer grafos desde archivos .txt
 - Uso de GUI
 
@@ -30,17 +31,31 @@ GRAFOS/ (raíz del proyecto)
 │   ├── __init__.py
 │   └── main.py
 └── graphs_1/
-    ├── __init__.py
-    ├── execute.py
-    ├── adjacencyList.py
-    ├── graph.py
-    ├── node.py
-    ├── graphicNode.py
-    ├── graphicEdge.py
-    ├── GUI.py
-    └── data/
-        ├── grafo*.csv
-        └── int.txt
+│   ├── __init__.py
+│   ├── execute.py
+│   ├── adjacencyList.py
+│   ├── graph.py
+│   ├── node.py
+│   ├── graphicNode.py
+│   ├── graphicEdge.py
+│   ├── GUI.py
+│   └── data/
+│       ├── grafo*.csv
+│       ├── grafo*.txt
+│       └── int.txt
+└── graphs_2/
+│   ├── __init__.py
+│   ├── execute.py
+│   ├── adjacencyList.py
+│   ├── graph.py
+│   ├── node.py
+│   ├── graphicNode.py
+│   ├── graphicEdge.py
+│   ├── GUI.py
+│   └── data/
+│       ├── grafo*.csv
+│       ├── grafo*.txt
+│       └── int.txt
 ```
 
 ## Ejecucion del archivo python
