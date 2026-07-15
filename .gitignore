@@ -1,0 +1,15 @@
+.git/
+.vscode/
+
+# Environments
+venv/
+
+# Python cache
+__pycache__/
+
+# Data files (do not commit)
+graphs_1/data/*.csv
+graphs_1/data/*.txt
+graphs_2/data/*.csv
+graphs_2/data/*.txt
+

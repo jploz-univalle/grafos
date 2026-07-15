@@ -1,4 +1,4 @@
-from graphs_1.node import Node
+from graphs_2.node import Node
 
 class GraphicNode(Node):
     """Clase que representa un Nodo Grafico

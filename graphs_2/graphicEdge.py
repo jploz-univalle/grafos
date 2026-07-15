@@ -1,6 +1,6 @@
 from math import hypot
 from tkinter import LAST, Canvas
-from graphs_1.graphicNode import GraphicNode
+from graphs_2.graphicNode import GraphicNode
 
 class GraphicEdge:
     """Clase que representa una arista con direccion
