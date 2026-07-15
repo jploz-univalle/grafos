@@ -28,7 +28,9 @@ def main() -> None:
 6.\tVisualizar grafo.
 7.\tEs el grafo un arbol?
 8.\tAlgoritmo de dijkstra.
-9.\tSalir.""")
+9.\t¿Tiene un camino de Euler?
+10.\t¿Tiene un circuito de Euler?
+11.\tSalir.""")
         option = int(input("> "))
 
         match option:
@@ -74,10 +76,22 @@ def main() -> None:
                     print("Los nodos seleccionados no son validos para el algoritmo dijkstra")
                 waitConfirm()
             case 9:
+                if grafo.has_eulerian_path():
+                    print("Sí, el grafo tiene al menos un camino de Euler.")
+                else:
+                    print("No, el grafo no contiene ningún camino de Euler.")
+                waitConfirm()
+            case 10:
+                if grafo.has_eulerian_circuit():
+                    print("Sí, el grafo tiene un circuito de Euler.")
+                else:
+                    print("No, el grafo no contiene ningún circuito de Euler.")
+                waitConfirm()
+            case 11:
                 print("Saliendo...")
                 break
             case _:
-                print("Instruccion incorrecta, elige nuevamente.")
+                print("Instrucción incorrecta, elige nuevamente.")
 
         print("-"*80)
 

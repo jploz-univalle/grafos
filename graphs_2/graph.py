@@ -245,3 +245,65 @@ class Graph:
         # Si es conexo, para que sea árbol debe tener exactamente n-1 aristas
         m = len(edges)
         return m == n - 1
+    
+    def is_weakly_connected(self) -> bool:
+        nodes = list(self.adjacency_list.nodesList)
+        if not nodes:
+            return True
+        
+        active_nodes = set()
+        adj_undirected: dict[str, set[str]] = {}
+
+        for u, v in self.adjacency_list.edge_red:
+            u, v = str(u), str(v)
+            active_nodes.add(u)
+            active_nodes.add(v)
+            adj_undirected.setdefault(u, set()).add(v)
+            adj_undirected.setdefault(v, set()).add(u)
+
+        if not active_nodes:
+            return True
+        
+        start = list(active_nodes)[0]
+        visited = set()
+        stack = [start]
+
+        while stack:
+            cur = stack.pop()
+            if cur not in visited:
+                visited.add(cur)
+                for nxt in adj_undirected.get(cur, set()):
+                    if nxt not in visited:
+                        stack.append(nxt)
+
+        return len(visited) == len(active_nodes)
+    
+    def has_eulerian_path(self) -> bool:
+        """
+        Retorna True si el grafo dirigido tiene un camino de Euler.
+        """
+        if not self.is_weakly_connected():
+            return False
+        
+        if self.has_eulerian_circuit():
+            return True
+        
+        start_nodes = 0
+        end_nodes = 0
+        balanced_nodes = 0
+        total_nodes = len(self.nodes_list)
+
+        for node in self.nodes_list:
+            in_degree = len(node.targeted)
+            out_degree = len(node.targets)
+
+            if out_degree - in_degree == 1:
+                start_nodes += 1
+            elif in_degree - out_degree == 1:
+                end_nodes += 1
+            elif in_degree == out_degree:
+                balanced_nodes += 1
+            else:
+                return False
+            
+        return start_nodes == 1 and end_nodes == 1 and (balanced_nodes == total_nodes - 2)
