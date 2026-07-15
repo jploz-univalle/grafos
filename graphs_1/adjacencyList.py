@@ -7,6 +7,7 @@ class AdjacencyList:
     """    
     def __init__(self, file_name="") -> None:
         BASE_DIR = Path(__file__).resolve().parent
+        print(BASE_DIR)
 
 
         self.nodesList = set() # Set de los nodos existentes (node_name: str, ...)

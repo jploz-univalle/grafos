@@ -1,5 +1,5 @@
-from graphs_1.adjacencyList import AdjacencyList
-from graphs_1.node import Node
+from graphs_2.adjacencyList import AdjacencyList
+from graphs_2.node import Node
 
 class Graph:
     """Esta clase representa un grafo

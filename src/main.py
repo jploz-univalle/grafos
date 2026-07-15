@@ -5,8 +5,9 @@ if __name__ == "__main__":
         print("2.\tGrafos entrega 2")
         opc = input("> ")
 
-        if not opc in (1,2):
+        if not int(opc) in (1,2):
             print("Opcion incorrecta.")
+            continue
         break
     match opc:
         case "1":

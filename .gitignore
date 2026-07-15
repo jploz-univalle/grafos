@@ -1,0 +1,12 @@
+# Virtual environments
+venv/
+
+# Python cache
+__pycache__/
+
+# Data files (graphs datasets)
+graphs_1/data/*.txt
+graphs_1/data/*.csv
+graphs_2/data/*.txt
+graphs_2/data/*.csv
+

@@ -5,7 +5,7 @@ from graphs_1.GUI import Graphic as Window
 def main() -> None:
     """Metodo para inicializar la consola
     """    
-
+    print("Grafos entrega 1")
     print("El archivo (.txt o .csv) debe estar en la carpeta ./data")
     file_name = input("Por favor ingrese el nombre del archivo: ")
     

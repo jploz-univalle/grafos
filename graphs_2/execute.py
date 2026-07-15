@@ -1,12 +1,12 @@
-from  graphs_1.graph import Graph
-from graphs_1.adjacencyList import AdjacencyList
-from graphs_1.GUI import Graphic as Window
+from  graphs_2.graph import Graph
+from graphs_2.adjacencyList import AdjacencyList
+from graphs_2.GUI import Graphic as Window
 import threading
 
 def main() -> None:
     """Metodo para inicializar la consola
     """    
-
+    print("Grafos entrega 2")
     print("El archivo (.txt o .csv) debe estar en la carpeta ./data")
     file_name = input("Por favor ingrese el nombre del archivo: ")
     
