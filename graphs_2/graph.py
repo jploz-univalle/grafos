@@ -245,11 +245,6 @@ class Graph:
         # Si es conexo, para que sea árbol debe tener exactamente n-1 aristas
         m = len(edges)
         return m == n - 1
-    
-    def has_eulerian_circuit(self) -> bool:
-        if not self.is_weakly_connected():
-            return False
-        
 
     def is_weakly_connected(self) -> bool:
         nodes = list(self.adjacency_list.nodesList)
@@ -259,7 +254,7 @@ class Graph:
         active_nodes = set()
         adj_undirected: dict[str, set[str]] = {}
 
-        for u, v in self.adjacency_list.edge_red:
+        for u, v in self.adjacency_list.edge_reg:
             u, v = str(u), str(v)
             active_nodes.add(u)
             active_nodes.add(v)
@@ -299,7 +294,7 @@ class Graph:
 
         return True
       
-     def has_eulerian_path(self) -> bool:
+    def has_eulerian_path(self) -> bool:
         """
         Retorna True si el grafo dirigido tiene un camino de Euler.
         """
