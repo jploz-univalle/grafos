@@ -246,6 +246,11 @@ class Graph:
         m = len(edges)
         return m == n - 1
     
+    def has_eulerian_circuit(self) -> bool:
+        if not self.is_weakly_connected():
+            return False
+        
+
     def is_weakly_connected(self) -> bool:
         nodes = list(self.adjacency_list.nodesList)
         if not nodes:
@@ -278,16 +283,32 @@ class Graph:
 
         return len(visited) == len(active_nodes)
     
-    def has_eulerian_path(self) -> bool:
+    def has_eulerian_circuit(self) -> bool:
+        """
+        Retorna True si el grafo dirigido tiene un circuito de Euler.
+        """
+        if not self.is_weakly_connected():
+            return False
+
+        for node in self.nodes_list:
+            in_degree = len(node.targeted)
+            out_degree = len(node.targets)
+
+            if in_degree != out_degree:
+                return False
+
+        return True
+      
+     def has_eulerian_path(self) -> bool:
         """
         Retorna True si el grafo dirigido tiene un camino de Euler.
         """
         if not self.is_weakly_connected():
             return False
-        
+
         if self.has_eulerian_circuit():
             return True
-        
+
         start_nodes = 0
         end_nodes = 0
         balanced_nodes = 0
@@ -305,5 +326,5 @@ class Graph:
                 balanced_nodes += 1
             else:
                 return False
-            
+
         return start_nodes == 1 and end_nodes == 1 and (balanced_nodes == total_nodes - 2)
