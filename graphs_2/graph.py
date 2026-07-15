@@ -3,12 +3,13 @@ from graphs_1.node import Node
 
 class Graph:
     """Esta clase representa un grafo
-    """    
+    """
 
     def __init__(self, adjacencyList: AdjacencyList):
         self.nodes_list = []
         self.adjacency_list = adjacencyList
         self.construct_by_adjancency_list()
+
 
     # Carga la lista de adyacencia a la entidad grafo
     def construct_by_adjancency_list (self) -> None:
@@ -102,6 +103,7 @@ class Graph:
     def IsACompleteGraph(self) -> None:
         """Dice si es un grafo completo o no
         """        
+        
         listOfNodes = set(self.adjacency_list.nodesList)
 
         for node_name in listOfNodes: 
@@ -114,5 +116,132 @@ class Graph:
         
         print("Es un grafo completo.")
 
+    def dijkstra(self, start: str, end: str | None = None):
+        """Algoritmo de Dijkstra para grafo dirigido ponderado.
 
-    
+        Usa `self.adjacency_list.nodesExit` como lista de adyacencia:
+        - keys: nodo source (string)
+        - values: lista de tuplas (target, weight)
+
+        Args:
+            start: nodo origen (string)
+            end: nodo destino (string) opcional.
+
+        Returns:
+            Si end es None: dict con distancias mínimas.
+            Si end no es None: (dist, path) donde path es lista de nodos.
+        """
+        nodes = list(self.adjacency_list.nodesList)
+        nodes_set = set(nodes)
+        if start not in nodes_set:
+            return float("inf"), []
+
+        if end is not None and end not in nodes_set:
+            return float("inf"), []
+
+
+        import heapq
+
+        # distancia mínima conocida
+        dist: dict[str, float] = {node: float("inf") for node in nodes}
+        dist[start] = 0.0
+
+        # para reconstruir ruta
+        prev: dict[str, str | None] = {node: None for node in nodes}
+
+        pq: list[tuple[float, str]] = [(0.0, start)]
+
+        while pq:
+            cur_dist, u = heapq.heappop(pq)
+            if cur_dist != dist[u]:
+                continue
+
+            if end is not None and u == end:
+                break
+
+            for v, w in self.adjacency_list.nodesExit.get(u, []) :
+                # weight viene como string; permitir ints/float
+                try:
+                    weight = float(w)
+                except (TypeError, ValueError):
+                    weight = float(str(w).strip())
+
+                if dist[u] + weight < dist.get(v, float("inf")):
+                    dist[v] = dist[u] + weight
+                    prev[v] = u
+                    heapq.heappush(pq, (dist[v], v))
+
+        if end is None:
+            return dist
+
+        if end not in dist:
+            return float("inf"), []
+
+        if dist[end] == float("inf"):
+            return float("inf"), []
+
+        # reconstruir ruta
+        path = []
+        cur: str | None = end
+        while cur is not None:
+            path.append(cur)
+            if cur == start:
+                break
+            cur = prev[cur]
+
+        path.reverse()
+        if not path or path[0] != start:
+            return float("inf"), []
+
+        return dist[end], path
+
+    def isTree(self):
+
+        """Verifica si el grafo recibido es un árbol (no dirigido).
+
+        Condiciones para árbol en grafo no dirigido:
+        - No tiene ciclos
+        - Es conexo
+        - Tiene exactamente n-1 aristas (equivalente si es conexo y acíclico)
+
+        Nota: usa `adjacency_list.edge_reg` como conjunto de aristas (u,v) normalizadas.
+        """
+
+        nodes = list(self.adjacency_list.nodesList)
+
+        n = len(nodes)
+        if n == 0:
+            return False
+
+        # Construir grafo no dirigido para conectividad y detección de ciclos (DFS)
+        adj_undirected: dict[str, set[str]] = {node: set() for node in nodes}
+        edges = set()
+        for u, v in self.adjacency_list.edge_reg:
+            u = str(u)
+            v = str(v)
+            if u == v:
+                return False  # lazo propio => ciclo
+            edges.add((u, v))
+            adj_undirected.setdefault(u, set()).add(v)
+            adj_undirected.setdefault(v, set()).add(u)
+
+        # Conectividad (BFS/DFS)
+        start = nodes[0]
+        visited: set[str] = set()
+        stack = [start]
+        while stack:
+            cur = stack.pop()
+            if cur in visited:
+                continue
+            visited.add(cur)
+            for nxt in adj_undirected.get(cur, set()):
+                if nxt not in visited:
+                    stack.append(nxt)
+
+        isConex = len(visited) == n
+        if not isConex:
+            return False
+
+        # Si es conexo, para que sea árbol debe tener exactamente n-1 aristas
+        m = len(edges)
+        return m == n - 1
