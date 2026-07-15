@@ -245,3 +245,16 @@ class Graph:
         # Si es conexo, para que sea árbol debe tener exactamente n-1 aristas
         m = len(edges)
         return m == n - 1
+    
+    def has_eulerian_circuit(self) -> bool:
+        if not self.is_weakly_connected():
+            return False
+        
+        for node in self.nodes_list:
+            in_degree = len(node.targeted)
+            out_degree = len(node.targets)
+
+            if in_degree != out_degree:
+                return False
+            
+        return True
